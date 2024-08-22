@@ -1,7 +1,7 @@
 services:
   ollama:
     volumes:
-      - voltron:/root/.ollama
+      - ollama:/root/.ollama
     container_name: ollama
     pull_policy: always
     tty: true
@@ -14,10 +14,10 @@ services:
       args:
         OLLAMA_BASE_URL: '/ollama'
       dockerfile: Dockerfile
-    image: ghcr.io/sunkendreams/voltron-webui:${WEBUI_DOCKER_TAG-main}
-    container_name: voltron-webui
+    image: ghcr.io/open-webui/open-webui:${WEBUI_DOCKER_TAG-main}
+    container_name: open-webui
     volumes:
-      - voltron-webui:/app/backend/data
+      - open-webui:/app/backend/data
     depends_on:
       - ollama
     ports:
@@ -31,4 +31,4 @@ services:
 
 volumes:
   ollama: {}
-  voltron-webui: {}
+  open-webui: {}
