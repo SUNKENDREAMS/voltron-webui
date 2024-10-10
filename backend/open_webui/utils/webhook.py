@@ -47,6 +47,9 @@ def post_webhook(url: str, message: str, event_data: dict) -> bool:
 
         log.debug(f"payload: {payload}")
         r = requests.post(url, json=payload)
+        log.debug(f"payload: {json.dumps(payload)}")
+        headers = {"Content-Type": "application/json"}
+        r = requests.post(url, json=payload, headers=headers)
         r.raise_for_status()
         log.debug(f"r.text: {r.text}")
         return True
